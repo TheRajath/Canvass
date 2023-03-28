@@ -1,2 +1,2 @@
 # Campgrounds
-Node js application built on express and mangodb
+Node js Web Application built on Express and Mangodb
