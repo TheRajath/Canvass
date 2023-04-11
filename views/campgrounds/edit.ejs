@@ -1,10 +1,9 @@
 <% layout('layout/boilerplate') %>
-<h1>Edit Campground</h1>
 
 <div class="row">
     <h1 class="text-center">Edit Campground</h1>
     <div class="col-6 offset-3">
-        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate
+        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate enctype="multipart/form-data"
             class="validated-form">
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
@@ -18,14 +17,6 @@
                 <label class="form-label" for="location">Location</label>
                 <input class="form-control" type="text" id="location" name="campground[location]"
                     value="<%= campground.location %>" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="campground[image]"
-                    value="<%= campground.image %>" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -46,9 +37,14 @@
                 <label class="form-label" for="description">Description</label>
                 <textarea class="form-control" type="text" id="description" name="campground[description]" required><%= campground.description %>
             </textarea>
-                <div class="valid-feedback">
+            <div class="valid-feedback">
                     Looks good!
                 </div>
+            </div>
+            <div class="mt-3 mb-5 custom-file">
+                <label for="image" class="form-label">Choose Images</label>
+                <input class="form-control" type="file" id="image" name="image" multiple>
+                <label for="image" class="custom-file-label text-muted"></label>
             </div>
             <div class="mb-3">
                 <button class="btn btn-info">Update Campground</button>
