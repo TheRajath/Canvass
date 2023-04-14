@@ -1,0 +1,33 @@
+name: Render Deploy
+
+on:
+  push:
+    branch:
+      - 'master'
+
+worklow_dispatch
+  inputs:
+    environments:
+      type: environment
+      description: Select the environment
+      default: DEV
+      required: true
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.inputs.environment || 'DEV' }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+
+    name: Wait for Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for Render Deployment
+        uses: bounceapp/render-action@0.6.0
+        with:
+          render-token: ${{ secrets.RENDER_TOKEN }}
+          service-id: secrets.SERVICE_ID
+          retries: 20
+          wait: 16000
+          sleep: 30000
