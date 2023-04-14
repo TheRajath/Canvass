@@ -4,6 +4,7 @@ on:
   push:
     branch:
       - 'master'
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -19,6 +20,7 @@ jobs:
         uses: bounceapp/render-action@0.6.0
         with:
           render-token: ${{ secrets.RENDER_TOKEN }}
+          github-token: ${{ secrets.GIT_TOKEN }}
           service-id: secrets.RENDER_SERVICE_ID
           retries: 20
           wait: 16000
