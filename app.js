@@ -21,7 +21,7 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
-mongoose.connect('mongodb://127.0.0.1:27017/camp-grounds');
+mongoose.connect(process.env.DATA_SOURCE_DEV);
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
