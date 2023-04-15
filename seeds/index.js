@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 const mongoose = require('mongoose');
 const Campground = require('../models/campground');
 const cities = require('./cities');
+const cloudinaryImages = require('./images');
 const { places, descriptors } = require('./seedHelpers');
 
 mongoose.connect(process.env.DATA_SOURCE_DEV);
@@ -39,16 +40,7 @@ const seedDb = async () => {
                     cities[random1000].latitude
                 ]
             },
-            images: [
-                {
-                    url: 'https://res.cloudinary.com/dgfwiqvlx/image/upload/v1680712392/Canvass/p8rpond6qt6gxb0jol3s.jpg',
-                    filename: 'Canvass/p8rpond6qt6gxb0jol3s'
-                },
-                {
-                    url: 'https://res.cloudinary.com/dgfwiqvlx/image/upload/v1680712395/Canvass/s61e6wbr2ivmzwkt5svg.jpg',
-                    filename: 'Canvass/s61e6wbr2ivmzwkt5svg'
-                }
-            ]
+            images: [sample(cloudinaryImages), sample(cloudinaryImages)]
         });
 
         await camp.save();
