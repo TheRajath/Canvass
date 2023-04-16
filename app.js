@@ -23,7 +23,7 @@ const reviewRoutes = require('./routes/reviews');
 const session = require('express-session');
 const MongoDBStore = require("connect-mongo");
 
-const dbUrl = process.env.DATA_SOURCE_LOCAL;
+const dbUrl = process.env.DATA_SOURCE_DEV;
 
 mongoose.connect(dbUrl);
 
