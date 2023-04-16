@@ -44,6 +44,13 @@ module.exports.login = (req, res) => {
     res.redirect(redirectUrl);
 };
 
+module.exports.showUser = (req, res) => {
+
+    const user = req.user;
+
+    res.render('users/show', { user });
+};
+
 module.exports.logout = (req, res, next) => {
 
     req.logout(err => {
