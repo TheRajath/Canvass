@@ -17,6 +17,9 @@ router.route('/login')
         keepSessionInfo: true
     }), users.login);
 
+router.route('/details')
+    .get(users.showUser);
+
 router.get('/logout', users.logout);
 
 module.exports = router;

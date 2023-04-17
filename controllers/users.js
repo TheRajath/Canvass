@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Campground = require('../models/campground');
 
 module.exports.renderRegister = (req, res) => {
 
@@ -42,6 +43,14 @@ module.exports.login = (req, res) => {
     delete req.session.returnTo;
 
     res.redirect(redirectUrl);
+};
+
+module.exports.showUser = async (req, res) => {
+
+    const user = req.user;
+    const campgroundCount = await Campground.find({ author: { $in : user._id }}).count();
+
+    res.render('users/show', { user, campgroundCount });
 };
 
 module.exports.logout = (req, res, next) => {
